@@ -1,0 +1,9 @@
+note over browser:
+user fills in form and presses submit, which updates notes and redraws the page
+end note
+
+browser->server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+note over server:
+server updates notes.json
+end note
