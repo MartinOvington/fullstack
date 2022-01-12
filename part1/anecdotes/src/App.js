@@ -29,14 +29,14 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
-  const [votes, setVotes] = useState([0, 0, 0, 0, 0, 0, 0])
+  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0))
   const vote_copy = [...votes]
   const genSelected = () => setSelected(Math.floor(Math.random() * anecdotes.length))
   const incVotes = () => {
     vote_copy[selected] += 1
     setVotes(vote_copy)
   }
-  
+
   return (
     <div>
       <h1>Anecdote of the day</h1>
