@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import FilterPeople from './components/filterpeople'
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -10,11 +11,6 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [myFilter, setFilter] = useState('')
-  
-  const Name = ({name, number}) => (
-    <div>{name} {number}</div>
-  )
-  
 
   const addPerson = (event) => {
     event.preventDefault()
@@ -45,11 +41,6 @@ const App = () => {
     setFilter(event.target.value)
   }
 
-  const filterPeople = () => {
-    return persons.filter(person => person.name.toLowerCase().includes(myFilter.toLowerCase())).map(
-      person => <Name key={person.name} name={person.name} number={person.number}/>)
-  }
-
   return (
     <div>
       <h2>Phonebook</h2>
@@ -69,7 +60,7 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      {filterPeople()}
+      <FilterPeople persons={persons} name={myFilter} />
     </div>
   )
 }
