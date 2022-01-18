@@ -1,18 +1,17 @@
 import React from 'react'
 
-const PersonFrom = ({func, v1, h1, v2, h2, v3, h3}) => (
-    <form onSubmit={addPerson}>
+const PersonForm = ({func, name, handleNameChange, number, handleNumberChange}) => (
+    <form onSubmit={func}>
         <div>
-            filter shown with: <input value={myFilter} onChange={handleFilterChange}/>
+            name: <input value={name} onChange={handleNameChange}/>
         </div>
         <div>
-            name: <input value={newName} onChange={handleNameChange}/>
-        </div>
-        <div>
-            number: <input value={newNumber} onChange={handleNumberChange}/>
+            number: <input value={number} onChange={handleNumberChange}/>
         </div>
         <div>
             <button type="submit">add</button>
         </div>
     </form>
 )
+
+export default PersonForm
