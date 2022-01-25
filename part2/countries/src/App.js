@@ -12,6 +12,10 @@ function App() {
   const filteredCountries = countries.filter(country => 
     country.name.common.toLowerCase().includes(findCountry.toLowerCase()))
 
+  const capital = filteredCountries.length == 1
+    ? filteredCountries[0].capital
+    : ''
+  
   useEffect(() => {
       axios
         .get('https://restcountries.com/v3.1/all')
@@ -19,19 +23,22 @@ function App() {
           setCountries(response.data)
       })
 
-  }, [filteredCountries])
+  }, [])
+
+  useEffect(() => {
+    console.log(capital)
+    if (capital != '') {
+        axios
+          .get('https://api.openweathermap.org/data/2.5/weather?q=' +
+            capital + '&appid=' + api_key.replaceAll("'", ""))
+          .then(response => {
+            setCapitalWeather(response.data)
+            })
+      }
+    }, [capital])
 
   const handleCountryChange = (event) => {
     setFindCountry(event.target.value)
-  }
-  
-  if (filteredCountries.length == 1) {
-    axios
-      .get('https://api.openweathermap.org/data/2.5/weather?q=' +
-        filteredCountries[0].capital + '&appid=' + api_key.replaceAll("'", ""))
-      .then(response => {
-        setCapitalWeather(response.data)
-      })
   }
 
   return (
@@ -41,7 +48,8 @@ function App() {
           find countries: <input value={findCountry} onChange={handleCountryChange}></input>
         </div>
       </form>
-      <Countries countries={filteredCountries} setFindCountry={setFindCountry} capitalWeather={capitalWeather}/>
+      <Countries countries={filteredCountries} setFindCountry={setFindCountry} 
+        capitalWeather={capitalWeather}/>
     </div>
   )
 }

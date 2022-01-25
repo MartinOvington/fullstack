@@ -1,7 +1,7 @@
 import React from 'react'
 import Country from './country'
 
-const Countries = ({countries, setFindCountry, getCapitalWeather, capitalWeather}) => {
+const Countries = ({countries, setFindCountry, capitalWeather}) => {
     if (countries.length > 10) {
         return <div>Too many matches, specify another filter</div>
     }
