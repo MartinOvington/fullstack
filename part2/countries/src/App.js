@@ -26,7 +26,6 @@ function App() {
   }, [])
 
   useEffect(() => {
-    console.log(capital)
     if (capital != '') {
         axios
           .get('https://api.openweathermap.org/data/2.5/weather?q=' +
