@@ -44,8 +44,13 @@ const App = () => {
             }, 5000)
           })
           .catch(error => {
+            console.log(error.response.data)
             setMsgType('errorMsg')
-            setMessage(`Information of ${newName} has already been removed from server`)
+            if (error.response.data.error.split(':')[0] === 'Person validation failed') {
+              setMessage(error.response.data.error)  
+            } else {
+              setMessage(`Information of ${newName} has already been removed from server`)
+            }
             setTimeout(() => {
               setMessage(null)
             }, 5000)
@@ -66,8 +71,13 @@ const App = () => {
           }, 5000)
         })
         .catch(error => {
+          console.log(error.response.data)
           setMsgType('errorMsg')
-          setMessage(`Information of ${newName} has already been removed from server`)
+          if (error.response.data.error.split(':')[0] === 'Person validation failed') {
+            setMessage(error.response.data.error)  
+          } else {
+            setMessage(`Information of ${newName} has already been removed from server`)
+          }
           setTimeout(() => {
             setMessage(null)
           }, 5000)
