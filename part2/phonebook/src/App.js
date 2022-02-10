@@ -46,7 +46,7 @@ const App = () => {
           .catch(error => {
             console.log(error.response.data)
             setMsgType('errorMsg')
-            if (error.response.data.error.search(/validation failed/i) >= 0) {
+            if (error.response.data.error.search(/(validation failed)|(duplicate)/i) >= 0) {
               setMessage(error.response.data.error)  
             } else {
               setMessage(`Information of ${newName} has already been removed from server`)
@@ -73,7 +73,7 @@ const App = () => {
         .catch(error => {
           console.log(error.response.data)
           setMsgType('errorMsg')
-          if (error.response.data.error.search(/validation failed/i) >= 0) {
+          if (error.response.data.error.search(/(validation failed)|(duplicate)/i) >= 0) {
             setMessage(error.response.data.error)  
           } else {
             setMessage(`Information of ${newName} has already been removed from server`)
